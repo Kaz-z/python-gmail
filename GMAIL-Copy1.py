@@ -13,17 +13,17 @@ py.sign_in('kaz', '9r6pr9gncf')
 
 
 # In[12]:
-
+# Download GMAIL inbox and point the path to your downloaded file
 path = '/home/kaazim/Downloads/Takeout/Mail/All mail Including Spam and Trash.mbox'
 
 
 # In[21]:
-
+# Open the mbox file with mailbox
 mbox = mailbox.mbox(path)
 
 
 # In[22]:
-
+# Function to sort the mail by date
 def extract_date(email):
     date = email.get('Date')
     return parsedate(date)
@@ -34,7 +34,7 @@ mbox.flush()
 
 
 # In[23]:
-
+# Organize the dates of email receipt as a list
 all_dates = []
 mbox = mailbox.mbox(path)
 for message in mbox:
@@ -43,17 +43,17 @@ for message in mbox:
 
 
 # In[24]:
-
+# Count the emails
 email_count = [(g[0], len(list(g[1]))) for g in itertools.groupby(all_dates)]
 
 
 # In[25]:
-
+# Output the first element
 email_count[0]
 
 
 # In[26]:
-
+# Graph the data using plotly
 x = []
 y = []
 for date, count in email_count:
@@ -67,7 +67,7 @@ py.iplot( Data([ Scatter ( x=x, y=y )]) )
 
 
 # In[30]:
-
+# Restyling of the graph
 import plotly.tools as tls
 
 
